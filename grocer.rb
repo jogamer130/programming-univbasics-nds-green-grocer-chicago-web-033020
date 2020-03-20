@@ -75,7 +75,14 @@ def apply_clearance(cart)
   #
   # REMEMBER: This method **should** update cart
   
-  
+  cart.map{|item|
+new_hash = {:item => item[:item],:price => (item[:price] * 0.8).round(2), :clearance => item[:clearance], :count => item[:count]}
+if item[:clearance]
+  new_hash
+else
+  item
+end
+}
   
 end
 
