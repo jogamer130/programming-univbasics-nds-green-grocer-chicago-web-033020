@@ -19,7 +19,31 @@ def consolidate_cart(cart)
   # REMEMBER: This returns a new Array that represents the cart. Don't merely
   # change `cart` (i.e. mutate) it. It's easier to return a new thing.
   
-  
+  new_hash = {}
+  i = 0 
+  while i < cart.length do
+    item = cart[i]
+ item_name = item[:item]
+  if not new_hash[item_name]
+    new_hash[item_name] = {:item => item[:item], :price => item[:price], :clearance => item[:clearance], :count => 1}
+  else
+     new_hash[item_name][:count] += 1
+end
+  i += 1
+  end
+  new_hash.map{|key,value| value}
+end
+
+
+#.to_f (to float)
+
+def get_coupon(item, coupons)
+  for coupon in coupons do
+    if item[:item] == coupon[:item]
+      return coupon
+    end
+  end
+  nil
   
 end
 
