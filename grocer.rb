@@ -63,7 +63,6 @@ def apply_clearance(cart)
     cart_index += 1 
   end
   ready_for_checkout
-end
 
 end
 
