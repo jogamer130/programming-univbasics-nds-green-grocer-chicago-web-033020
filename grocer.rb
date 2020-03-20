@@ -43,22 +43,27 @@ def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
+  
   coupons_index = 0
 
-  while coupons_index < coupons.size do
-    current_coupon = coupons[coupons_index]
-    applicable_for_discount = find_item_by_name_in_collection( current_coupon[:item], cart )
-      if ( applicable_for_discount[:count] / current_coupon[:num] >= 1 )
-        cart.push( {:item => "#{current_coupon[:item]} W/COUPON",
-                    :price => (current_coupon[:cost] / current_coupon[:num]).round(2),
-                    :clearance => applicable_for_discount[:clearance],
-                    :count => applicable_for_discount[:count] - ( applicable_for_discount[:count] % current_coupon[:num])})
+  checkout = consolidate_cart( cart )
+  checkout = apply_coupons( checkout, coupons )
+  checkout = apply_clearance( checkout )
 
-        applicable_for_discount[:count] %= current_coupon[:num]
-      end
-    coupons_index += 1
+  index = 0
+  grand_total = 0
+
+  while index < checkout.size do
+    current_item_total = checkout[index][:price] * checkout[index][:count]
+    current_item_total.round(2)
+    grand_total += current_item_total
+    index += 1
   end
-  cart
+  if ( grand_total > 100 )
+    grand_total *= 0.90
+  end
+  grand_total
+  
 end
 
 def checkout(cart, coupons)
