@@ -44,8 +44,25 @@ def apply_coupons(cart, coupons)
   #
   # REMEMBER: This method **should** update cart
   
-  coupons_index = 0
+end
 
+def apply_clearance(cart)
+  # Consult README for inputs and outputs
+  #
+  # REMEMBER: This method **should** update cart
+end
+
+def checkout(cart, coupons)
+  # Consult README for inputs and outputs
+  #
+  # This method should call
+  # * consolidate_cart
+  # * apply_coupons
+  # * apply_clearance
+  #
+  # BEFORE it begins the work of calculating the total (or else you might have
+  # some irritated customers
+  
   checkout = consolidate_cart( cart )
   checkout = apply_coupons( checkout, coupons )
   checkout = apply_clearance( checkout )
@@ -64,16 +81,4 @@ def apply_coupons(cart, coupons)
   end
   grand_total
   
-end
-
-def checkout(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # This method should call
-  # * consolidate_cart
-  # * apply_coupons
-  # * apply_clearance
-  #
-  # BEFORE it begins the work of calculating the total (or else you might have
-  # some irritated customers
 end
